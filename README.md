@@ -39,7 +39,7 @@ This approach keeps the image **structurally intact** (headers and dimensions ar
 | `MT_STATE_XOR`        | XORs with raw state bytes of the Mersenne Twister.                          |
 | `RC4`                 | Full RC4 key scheduling and keystream.                                      |
 | `RC4_KSA`             | Only uses the static 0x00–0xFF state as XOR mask.                           |
-| `RC4_KSA_STRETCH`     | Maps 0–255 across the entire image for smooth XOR transition.               |
+| `RC4_KSA_STRETCH`     | Maps 0x00–0xFF across the entire image for smooth XOR transition.               |
 | `CELLULAR_AUTOMATA`   | Uses a cellular automaton mask to determine which pixels to encrypt.        |
 | `CELLULAR_RANDOM_RGB`| Same as above, but each masked pixel is XORed with a random RGB key.        |
 
