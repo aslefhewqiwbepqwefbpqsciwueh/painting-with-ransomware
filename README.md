@@ -8,20 +8,20 @@
 
 ## How It Works
 
-The tool takes an input image and applies a chosen "ransomware-inspired" encryption scheme. Some schemes are based on real-world malware (e.g. **LooCipher**, **Prince Ransomware**), while others are conceptual or playful (e.g. **cellular automata masks**, **Mersenne Twister keystreams**, **stretched RC4 KSA**).
+The tool takes an input image and applies a chosen "ransomware-inspired" encryption scheme. Some schemes are based on real-world malware (e.g. LooCipher, **Prince Ransomware), while others are conceptual or playful (e.g. cellular automata masks, Mersenne Twister keystreams, stretched RC4 KSA).
 
-Each scheme creates distinctive artifacts in the encrypted image, making the cryptographic transformation **visually interpretable**.
+Each scheme creates distinctive artifacts in the encrypted image, making the cryptographic transformation visually interpretable.
 
 ### RGB Isolation
 
-Instead of encrypting the entire image file (which would corrupt the format and make it unviewable), this tool isolates the **raw RGB pixel data** from the image and applies encryption only to that portion:
+Instead of encrypting the entire image file (which would corrupt the format and make it unviewable), this tool isolates the raw RGB pixel data from the image and applies encryption only to that portion:
 
 - The image is converted to an uncompressed format (BMP).
-- The **RGB stream** is extracted as a flat byte array: `R, G, B, R, G, B, ...`
+- The RGB stream is extracted as a flat byte array: `R, G, B, R, G, B, ...`
 - Encryption algorithms are applied directly to this byte stream.
 - After transformation, the encrypted RGB data is stitched back into a valid image.
 
-This approach keeps the image **structurally intact** (headers and dimensions are preserved) while allowing the encryption to introduce **visual patterns, artifacts, and distortions** based on cryptographic logic.
+This approach keeps the image structurally intact (headers and dimensions are preserved) while allowing the encryption to introduce visual patterns, artifacts, and distortions based on cryptographic logic.
 
 ---
 
@@ -58,8 +58,8 @@ This approach keeps the image **structurally intact** (headers and dimensions ar
 
 ## 🎞️ Animation Support
 
-- Frames generated from shifting or evolving encryptions (e.g. `PRINCE_SHIFTED`, `CELLULAR_AUTOMATA`) can be **stitched into a GIF** using the provided tools.
-- You can also **visualize encryption live** using the `LiveImageRenderer` module (matplotlib). This is only implemented for LooCipher at the moment.
+- Frames generated from shifting or evolving encryptions (e.g. `PRINCE_SHIFTED`, `CELLULAR_AUTOMATA`) can be stitched into a GIF using the provided tools.
+- You can also visualize encryption live using the `LiveImageRenderer` module (matplotlib). This is only implemented for LooCipher at the moment.
 
 ---
 
@@ -72,7 +72,7 @@ This approach keeps the image **structurally intact** (headers and dimensions ar
 
 ### Cellular Automata-Based Encryption
 
-This encryption mode uses a **1D cellular automaton** to generate a binary mask over the image. Starting from an initial row seeded with a few active bits, a rule (0–255) determines how each subsequent row evolves based on the previous one.
+This encryption mode uses a 1D cellular automaton to generate a binary mask over the image. Starting from an initial row seeded with a few active bits, a rule (0–255) determines how each subsequent row evolves based on the previous one.
 
 This mode is designed for a bit of fun and can be helpful in teaching how binary and arrays work.
 
@@ -82,7 +82,7 @@ Each pixel in the image is mapped to a cell in the automaton grid:
 
 Two modes are supported:
 - `CELLULAR_AUTOMATA`: Pixels are XORed with `0xFF` (inverting them).
-- `CELLULAR_RANDOM_RGB`: Pixels are XORed with a **random RGB key** (based on seed), creating more colourful visuals.
+- `CELLULAR_RANDOM_RGB`: Pixels are XORed with a random RGB key (based on seed), creating more colourful visuals.
 
 > These modes are especially effective at revealing fractal, chaotic, or symmetrical patterns depending on the rule selected.
 
