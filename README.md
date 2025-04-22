@@ -51,7 +51,7 @@ This approach keeps the image structurally intact (headers and dimensions are pr
 |---------------------------------------------|-----------------------------------------------------------|
 | ![original](images/readme/apu_original.jpg) | ![prince_encrypted](images/readme/apu_prince_rc4_ksa.jpg) |
 
-> The `PRINCE` encryption mode uses a ChaCha20-derived stream to encrypt **every third byte**, leaving parts of the structure visible and producing a distinct glitch aesthetic.
+> The `PRINCE` encryption mode uses a ChaCha20-derived stream to encrypt every third byte, leaving the structure visible and producing a fuzzy static aesthetic.
 
 
 ---
