@@ -27,22 +27,23 @@ This approach keeps the image structurally intact (headers and dimensions are pr
 
 ## Supported Encryption Modes
 
-| Mode                  | Description                                                                 |
-|-----------------------|-----------------------------------------------------------------------------|
-| `ECB_CLASSIC`         | Basic AES-style ECB simulation; reveals patterns in repeated blocks.        |
-| `LOO_CIPHER`          | Inspired by LooCipher ransomware; AES-ECB block encryption.                 |
-| `PRINCE`              | Inspired by Prince ransomware; ChaCha20 encrypting every 3rd byte.          |
-| `PRINCE_SHIFTED`      | Variant of PRINCE; offsets encryption start to isolate R/G/B channels.      |
-| `XOR_SIMPLE`          | XOR with a SHA-256-derived keystream.                                       |
-| `XOR_BASIC`           | Basic XOR with 1-byte key.                                                   |
-| `MT_XOR`              | Uses Mersenne Twister stream for XOR encryption.                            |
-| `MT_STATE_XOR`        | XORs with raw state bytes of the Mersenne Twister.                          |
-| `RC4`                 | Full RC4 key scheduling and keystream.                                      |
-| `RC4_KSA`             | Only uses the static 0x00–0xFF state as XOR mask.                           |
-| `RC4_KSA_STRETCH`     | Maps 0x00–0xFF across the entire image for smooth XOR transition.               |
-| `CELLULAR_AUTOMATA`   | Uses a cellular automaton mask to determine which pixels to encrypt.        |
-| `CELLULAR_RANDOM_RGB`| Same as above, but each masked pixel is XORed with a random RGB key.        |
-
+| Mode                  | Description                                                            |
+|-----------------------|------------------------------------------------------------------------|
+| `ECB_CLASSIC`         | Basic AES-style ECB simulation; reveals patterns in repeated blocks.   |
+| `LOO_CIPHER`          | Inspired by LooCipher ransomware; AES-ECB block encryption.            |
+| `PRINCE`              | Inspired by Prince ransomware; ChaCha20 encrypting every 3rd byte.     |
+| `PRINCE_SHIFTED`      | Variant of PRINCE; offsets encryption start to isolate R/G/B channels. |
+| `XOR_SIMPLE`          | XOR with a SHA-256-derived keystream.                                  |
+| `XOR_BASIC`           | Basic XOR with 1-byte key.                                             |
+| `MT_XOR`              | Uses Mersenne Twister stream for XOR encryption.                       |
+| `MT_STATE_XOR`        | XORs with raw state bytes of the Mersenne Twister.                     |
+| `RC4`                 | Full RC4 key scheduling and keystream.                                 |
+| `RC4_KSA`             | Only uses the static 0x00–0xFF state as XOR mask.                      |
+| `RC4_KSA_STRETCH`     | Maps 0x00–0xFF across the entire image for smooth XOR transition.      |
+| `CELLULAR_AUTOMATA`   | Uses a cellular automaton mask to determine which pixels to encrypt.   |
+| `CELLULAR_RANDOM_RGB`| Same as above, but each masked pixel is XORed with a random RGB key.   |
+| `RC4_SKIP_WHITE`| RC4 encrypts bytes below `0xF0`.                                       |
+| `RC4_ENCRYPT_WHITE`| RC4 encrypts bytes above `0xF0`.                                       |
 ---
 
 ### 📷 Prince Ransomware Visual Example
