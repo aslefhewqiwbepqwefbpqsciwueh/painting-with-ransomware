@@ -5,7 +5,7 @@ processor = ImageProcessor("images/apu.bmp")
 
 engine = EncryptionEngine(
     mode=Ransomware.LOO_CIPHER,
-    seed=2,
+    seed=2
 )
 
 encrypted = engine.encrypt(processor.byte_array)
