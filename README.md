@@ -8,7 +8,7 @@
 
 ## How It Works
 
-The tool takes an input image and applies a chosen "ransomware-inspired" encryption scheme. Some schemes are based on real-world malware (e.g. LooCipher, **Prince Ransomware), while others are conceptual or playful (e.g. cellular automata masks, Mersenne Twister keystreams, stretched RC4 KSA).
+The tool takes an input image and applies a chosen "ransomware-inspired" encryption scheme. Some schemes are based on real-world malware (e.g. LooCipher, Prince Ransomware), while others are conceptual or playful (e.g. cellular automata masks, Mersenne Twister keystreams, stretched RC4 KSA).
 
 Each scheme creates distinctive artifacts in the encrypted image, making the cryptographic transformation visually interpretable.
 
