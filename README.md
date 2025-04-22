@@ -96,7 +96,7 @@ Two modes are supported:
 
 ## How to Use
 
-### Prince Ransomware
+### LooCipher Ransomware
 
 ```python
 from image_processor import ImageProcessor
