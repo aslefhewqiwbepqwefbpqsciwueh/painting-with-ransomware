@@ -65,9 +65,9 @@ This approach keeps the image **structurally intact** (headers and dimensions ar
 
 ### 🎞️ Animated Example — XOR Basic Mode
 
-| Description | Animation |
-|-------------|-----------|
-| An animation showing the effect of applying `XOR_BASIC` encryption with different seeds. Each frame uses a 1-byte XOR key derived from the seed, producing distinct visual tiling or hue shifts. | ![xor_basic_gif](images/finished_art/xor_basic_scale_apu.gif) |
+| Description | Animation                                               |
+|-------------|---------------------------------------------------------|
+| An animation showing the effect of applying `XOR_BASIC` encryption with different seeds. Each frame uses a 1-byte XOR key derived from the seed, producing distinct visual tiling or hue shifts. | ![xor_basic_gif](images/readme/xor_basic_scale_apu.gif) |
 
 > 🧪 This animation reveals how simple XOR operations, when applied with varying seeds, can create colorful, repeatable transformations across an image.
 
