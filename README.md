@@ -6,13 +6,13 @@
 
 ---
 
-## 🔧 How It Works
+## How It Works
 
 The tool takes an input image and applies a chosen "ransomware-inspired" encryption scheme. Some schemes are based on real-world malware (e.g. **LooCipher**, **Prince Ransomware**), while others are conceptual or playful (e.g. **cellular automata masks**, **Mersenne Twister keystreams**, **stretched RC4 KSA**).
 
 Each scheme creates distinctive artifacts in the encrypted image, making the cryptographic transformation **visually interpretable**.
 
-### 🎨 RGB Isolation
+### RGB Isolation
 
 Instead of encrypting the entire image file (which would corrupt the format and make it unviewable), this tool isolates the **raw RGB pixel data** from the image and applies encryption only to that portion:
 
@@ -25,7 +25,7 @@ This approach keeps the image **structurally intact** (headers and dimensions ar
 
 ---
 
-## 💣 Supported Encryption Modes
+## Supported Encryption Modes
 
 | Mode                  | Description                                                                 |
 |-----------------------|-----------------------------------------------------------------------------|
@@ -51,7 +51,7 @@ This approach keeps the image **structurally intact** (headers and dimensions ar
 |---------------------------------------------|-----------------------------------------------------------|
 | ![original](images/readme/apu_original.jpg) | ![prince_encrypted](images/readme/apu_prince_rc4_ksa.jpg) |
 
-> 🔁 The `PRINCE` encryption mode uses a ChaCha20-derived stream to encrypt **every third byte**, leaving parts of the structure visible and producing a distinct glitch aesthetic.
+> The `PRINCE` encryption mode uses a ChaCha20-derived stream to encrypt **every third byte**, leaving parts of the structure visible and producing a distinct glitch aesthetic.
 
 
 ---
@@ -59,20 +59,18 @@ This approach keeps the image **structurally intact** (headers and dimensions ar
 ## 🎞️ Animation Support
 
 - Frames generated from shifting or evolving encryptions (e.g. `PRINCE_SHIFTED`, `CELLULAR_AUTOMATA`) can be **stitched into a GIF** using the provided tools.
-- You can also **visualize encryption live** using the `LiveImageRenderer` module (matplotlib). This is only implmented for LooCipher at the moment.
+- You can also **visualize encryption live** using the `LiveImageRenderer` module (matplotlib). This is only implemented for LooCipher at the moment.
 
 ---
 
-### 🎞️ Animated Example — XOR Basic Mode
+### Animated Example — XOR Basic Mode
 
 | Description | Animation                                               |
 |-------------|---------------------------------------------------------|
 | An animation showing the effect of applying `XOR_BASIC` encryption with different seeds. Each frame uses a 1-byte XOR key derived from the seed, producing distinct visual tiling or hue shifts. | ![xor_basic_gif](images/readme/xor_basic_scale_apu.gif) |
 
-> 🧪 This animation reveals how simple XOR operations, when applied with varying seeds, can create colorful, repeatable transformations across an image.
 
-
-### 🧩 Cellular Automata-Based Encryption
+### Cellular Automata-Based Encryption
 
 This encryption mode uses a **1D cellular automaton** to generate a binary mask over the image. Starting from an initial row seeded with a few active bits, a rule (0–255) determines how each subsequent row evolves based on the previous one.
 
@@ -96,7 +94,7 @@ Two modes are supported:
 
 ---
 
-## 🚀 How to Use
+## How to Use
 
 ### Prince Ransomware
 
