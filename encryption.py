@@ -17,6 +17,8 @@ class Ransomware(Enum):
     RC4 = auto()
     RC4_KSA = auto()
     RC4_KSA_STRETCH = auto()
+    RC4_SKIP_WHITE = auto()
+    RC4_ENCRYPT_WHITE = auto()
 
 class EncryptionEngine:
     def __init__(self, mode=Ransomware.ECB_CLASSIC, grayscale=False, reverse=False, seed=None, block_size=48, render=False, width=None, height=None):
@@ -65,6 +67,10 @@ class EncryptionEngine:
             return self._rc4_ksa_encrypt(byte_array)
         elif self.mode == Ransomware.RC4_KSA_STRETCH:
             return self._rc4_ksa_stretch_encrypt(byte_array)
+        elif self.mode == Ransomware.RC4_SKIP_WHITE:
+            return self._rc4_skip_white_encrypt(byte_array)
+        elif self.mode == Ransomware.RC4_ENCRYPT_WHITE:
+            return self._rc4_encrypt_white_encrypt(byte_array)
         else:
             raise ValueError(f"Unsupported ransomware mode: {self.mode}")
 
@@ -269,6 +275,72 @@ class EncryptionEngine:
         encrypted = bytearray()
         for i, b in enumerate(data):
             encrypted.append(b ^ stretched[i])
+
+        return encrypted
+
+    def _rc4_skip_white_encrypt(self, data):
+        print("Encrypting using RC4 logic (skipping white bytes)...")
+        if self.seed is None:
+            raise ValueError("RC4_SKIP_WHITE mode requires a seed to be set.")
+
+        key = bytearray(str(self.seed).encode())
+        S = list(range(256))
+        j = 0
+
+        # KSA
+        for i in range(256):
+            j = (j + S[i] + key[i % len(key)]) % 256
+            S[i], S[j] = S[j], S[i]
+
+        # PRGA
+        i = j = 0
+        keystream = []
+        for _ in range(len(data)):
+            i = (i + 1) % 256
+            j = (j + S[i]) % 256
+            S[i], S[j] = S[j], S[i]
+            K = S[(S[i] + S[j]) % 256]
+            keystream.append(K)
+
+        encrypted = bytearray()
+        for n, b in enumerate(data):
+            if b <= 0xff and b >= 0xf0:
+                encrypted.append(b)
+            else:
+                encrypted.append(b ^ keystream[n])
+
+        return encrypted
+
+    def _rc4_encrypt_white_encrypt(self, data):
+        print("Encrypting using RC4 logic (encrypting white bytes)...")
+        if self.seed is None:
+            raise ValueError("RC4_ENCRYPT_WHITE mode requires a seed to be set.")
+
+        key = bytearray(str(self.seed).encode())
+        S = list(range(256))
+        j = 0
+
+        # KSA
+        for i in range(256):
+            j = (j + S[i] + key[i % len(key)]) % 256
+            S[i], S[j] = S[j], S[i]
+
+        # PRGA
+        i = j = 0
+        keystream = []
+        for _ in range(len(data)):
+            i = (i + 1) % 256
+            j = (j + S[i]) % 256
+            S[i], S[j] = S[j], S[i]
+            K = S[(S[i] + S[j]) % 256]
+            keystream.append(K)
+
+        encrypted = bytearray()
+        for n, b in enumerate(data):
+            if b < 0xf0:
+                encrypted.append(b)
+            else:
+                encrypted.append(b ^ keystream[n])
 
         return encrypted
 
