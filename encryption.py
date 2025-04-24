@@ -99,15 +99,16 @@ class EncryptionEngine:
             encrypted_block = encryptor.update(block)
             encrypted.extend(encrypted_block)
             if self.render:
-                # Create a copy of the full original image to work with
-                temp_frame = bytearray(data)
+                if i % 10000 == 0:
+                    # Create a copy of the full original image to work with
+                    temp_frame = bytearray(data)
 
-                # Fill in encrypted regions
-                for i in range(len(encrypted)):
-                    temp_frame[i] = encrypted[i]
+                    # Fill in encrypted regions
+                    for i in range(len(encrypted)):
+                        temp_frame[i] = encrypted[i]
 
-                # Then render
-                LiveImageRenderer.render(temp_frame, self.width, self.height)
+                    # Then render
+                    LiveImageRenderer.render(temp_frame, self.width, self.height)
 
         encrypted.extend(encryptor.finalize())
         return encrypted
