@@ -96,6 +96,14 @@ Two modes are supported:
 
 ---
 
+### Combining Encryption Modes
+
+One can get nice effects by combining multiple encryption modes. Test them in different orders also to see how one mode will have a cascade effect on the subsequent modes
+
+| Original Image                      | Encrypted XOR Basic (Key 0xFF)                 | RC4 (Skipping High Bytes)                                 |
+|-------------------------------------|------------------------------------------------|-----------------------------------------------------------|
+| ![original](images/readme/mona.png) | ![prince_encrypted](images/readme/xor_mona.jpg) | ![prince_encrypted](images/readme/xor_rc4_skip_white_mona.jpg) |
+
 ## How to Use
 
 ### LooCipher Ransomware
