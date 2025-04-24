@@ -19,6 +19,7 @@ class Ransomware(Enum):
     RC4_KSA_STRETCH = auto()
     RC4_SKIP_WHITE = auto()
     RC4_ENCRYPT_WHITE = auto()
+    REDEYE = auto()
 
 class EncryptionEngine:
     def __init__(self, mode=Ransomware.ECB_CLASSIC, grayscale=False, reverse=False, seed=None, block_size=48, render=False, width=None, height=None):
@@ -71,6 +72,8 @@ class EncryptionEngine:
             return self._rc4_skip_white_encrypt(byte_array)
         elif self.mode == Ransomware.RC4_ENCRYPT_WHITE:
             return self._rc4_encrypt_white_encrypt(byte_array)
+        elif self.mode == Ransomware.REDEYE:
+            return self._redeye_encrypt(byte_array)
         else:
             raise ValueError(f"Unsupported ransomware mode: {self.mode}")
 
@@ -343,6 +346,10 @@ class EncryptionEngine:
                 encrypted.append(b ^ keystream[n])
 
         return encrypted
+
+    def _redeye_encrypt(self, data):
+        print("Wiping file contents using RedEye mode...")
+        return bytearray([0x00] * len(data))
 
     def _to_grayscale(self, data):
         print("Applying grayscale filter...")
