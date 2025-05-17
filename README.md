@@ -90,9 +90,9 @@ Two modes are supported:
 
 ### 📷 Cellular Automata Visual Example
 
-| Original Image                              | Cellular Automata Encrypted (Rule 99)                  |
-|---------------------------------------------|--------------------------------------------------------|
-| ![original](images/readme/apu_original.jpg) | ![prince_encrypted](images/readme/apu_cellular_99.jpg) |
+| Original Image                         | Cellular Automata Encrypted (Rule 57)                      |
+|----------------------------------------|------------------------------------------------------------|
+| ![original](images/readme/arizona.png) | ![prince_encrypted](images/readme/arizona_cellular_57.png) |
 
 ---
 
