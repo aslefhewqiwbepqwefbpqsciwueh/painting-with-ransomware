@@ -67,9 +67,9 @@ This approach keeps the image structurally intact (headers and dimensions are pr
 
 ### Animated Example — XOR Basic Mode
 
-| Description | Animation                                               |
-|-------------|---------------------------------------------------------|
-| An animation showing the effect of applying `XOR_BASIC` encryption with different seeds. Each frame uses a 1-byte XOR key derived from the seed, producing distinct visual tiling or hue shifts. | ![xor_basic_gif](images/readme/xor_basic_scale_apu.gif) |
+| Description | Animation                                                      |
+|-------------|----------------------------------------------------------------|
+| An animation showing the effect of applying `XOR_BASIC` encryption with different seeds. Each frame uses a 1-byte XOR key derived from the seed, producing distinct visual tiling or hue shifts. | ![xor_basic_gif](images/readme/xor_basic_scale_union_jack.gif) |
 
 
 ### Cellular Automata-Based Encryption
