@@ -49,9 +49,9 @@ This approach keeps the image structurally intact (headers and dimensions are pr
 
 ### 📷 Prince Ransomware Visual Example
 
-| Original Image                              | Encrypted (Prince + RC4 KSA Stretched)                    |
-|---------------------------------------------|-----------------------------------------------------------|
-| ![original](images/readme/apu_original.jpg) | ![prince_encrypted](images/readme/apu_prince_rc4_ksa.jpg) |
+| Original Image                                   | Encrypted (Prince + RC4 KSA Stretched)                         |
+|--------------------------------------------------|----------------------------------------------------------------|
+| ![original](images/readme/milhouse_original.png) | ![prince_encrypted](images/readme/milhouse_prince_rc4_ksa.png) |
 
 > The `PRINCE` encryption mode uses a ChaCha20-derived stream to encrypt every third byte, leaving the structure visible and producing a fuzzy static aesthetic.
 
