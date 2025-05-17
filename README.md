@@ -112,7 +112,7 @@ One can get nice effects by combining multiple encryption modes. Test them in di
 from image_processor import ImageProcessor
 from encryption import EncryptionEngine, Ransomware
 
-processor = ImageProcessor("images/apu.bmp")
+processor = ImageProcessor("images/milhouse.png")
 
 engine = EncryptionEngine(
     mode=Ransomware.LOO_CIPHER,
@@ -134,7 +134,7 @@ from image_processor import ImageProcessor
 from cellular_encryptor import CellularAutomataEncryptor
 
 # Load the image
-processor = ImageProcessor("images/apu.bmp")
+processor = ImageProcessor("images/milhouse.png")
 width, height = processor.header_info["width"], processor.header_info["height"]
 
 # Create and run the cellular automaton
@@ -161,7 +161,7 @@ buffers = []
 
 # Generate 3 frames using PRINCE_SHIFTED with different seeds
 for shift in range(3):
-    processor = ImageProcessor("images/apu.bmp")
+    processor = ImageProcessor("images/milhouse.png")
     engine = EncryptionEngine(mode=Ransomware.PRINCE_SHIFTED, seed=shift)
     encrypted = engine.encrypt(processor.byte_array)
     buffer = processor.reconstruct_bmp(encrypted)

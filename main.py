@@ -1,7 +1,7 @@
 from image_processor import ImageProcessor
 from encryption import EncryptionEngine, Ransomware
 
-processor = ImageProcessor("images/apu.bmp")
+processor = ImageProcessor("images/milhouse.png")
 
 engine = EncryptionEngine(
     mode=Ransomware.LOO_CIPHER,
