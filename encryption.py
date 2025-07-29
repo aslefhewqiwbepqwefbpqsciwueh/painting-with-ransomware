@@ -20,6 +20,7 @@ class Ransomware(Enum):
     RC4_SKIP_WHITE = auto()
     RC4_ENCRYPT_WHITE = auto()
     REDEYE = auto()
+    WANNACRY = auto()
 
 class EncryptionEngine:
     def __init__(self, mode=Ransomware.ECB_CLASSIC, grayscale=False, reverse=False, seed=None, block_size=48, render=False, width=None, height=None):
@@ -74,6 +75,8 @@ class EncryptionEngine:
             return self._rc4_encrypt_white_encrypt(byte_array)
         elif self.mode == Ransomware.REDEYE:
             return self._redeye_encrypt(byte_array)
+        elif self.mode == Ransomware.WANNACRY:
+            return self._wannacry_encrypt(byte_array)
         else:
             raise ValueError(f"Unsupported ransomware mode: {self.mode}")
 
@@ -113,6 +116,32 @@ class EncryptionEngine:
         encrypted.extend(encryptor.finalize())
         return encrypted
 
+    def _wannacry_encrypt(self, data):
+        print("Encrypting using WannaCry logic...")
+
+        if self.seed is None:
+            raise ValueError("WannaCry mode requires a seed to be set.")
+
+        # seed the PRNG so the key is reproducible from self.seed
+        rng = random.Random(self.seed)
+        # grab a 128‑bit integer and turn it into 16 bytes
+        key = rng.getrandbits(128).to_bytes(16, 'big')
+
+        # 16‑byte all‑zero IV
+        iv = b'\x00' * 16
+
+        cipher = Cipher(
+            algorithms.AES(key),
+            modes.CBC(iv),
+            backend=default_backend()
+        )
+        encryptor = cipher.encryptor()
+
+        # zero‑pad to a 16‑byte boundary
+        padded = data + b'\x00' * ((16 - len(data) % 16) % 16)
+
+        encrypted = encryptor.update(padded) + encryptor.finalize()
+        return encrypted
     def _prince_encrypt(self, data):
         print("Encrypting using Prince Ransomware logic...")
 
