@@ -111,6 +111,9 @@ class ImageProcessor:
         width = self.header_info["width"]
         height = self.header_info["height"]
 
+        expected_size = height * width * 3
+        if len(byte_array) != expected_size:
+            byte_array = byte_array[:expected_size]  # trim extra padding due to block modes of encryption
         img_array = np.frombuffer(byte_array, dtype=np.uint8).reshape((height, width, 3))
         img = Image.fromarray(img_array, "RGB")
 
